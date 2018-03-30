@@ -34,4 +34,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     wearApp project(':wear')
     implementation 'com.google.android.gms:play-services-wearable:+'
+    //moshi
+    implementation 'com.squareup.moshi:moshi:1.5.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.5.0'
 }
