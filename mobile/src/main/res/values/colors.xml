@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/PolarNightLight</color>
+    <color name="colorPrimaryDark">@color/PolarNightDark</color>
+    <color name="colorAccent">@color/AuroraRed</color>
+
+    <color name="white">#ffffff</color>
+    <color name="light_gray">#DCDBDC</color>
+    <color name="blackish">#2E3440</color>
+    <color name="gray">#77000000</color>
+    <!--Nord colors https://github.com/arcticicestudio/nord-->
+    <!--Polar night-->
+    <color name="PolarNightDark">#292e38</color>
+    <color name="PolarNightMid">#343A4A</color>
+    <color name="PolarNight">#3a4355</color>
+    <color name="PolarNightLight">#434c61</color>
+
+    <!--Snow Storm-->
+    <color name="SnowStormDark">#D1D9E6</color>
+    <color name="SnowStorm">#E1E6EE</color>
+    <color name="SnowStormLight">#E9EDF4</color>
+
+    <!--Frost-->
+    <color name="FrostDarkGreen">#82B4B3</color>
+    <color name="FrostGreen">#79BACC</color>
+    <color name="FrostLightBlue">#7497BD</color>
+    <color name="FrostBlue">#5276a6</color>
+    <color name="AuroraRed">#b9525b</color>
+    <color name="AuroraOrange">#CC795F</color>
+    <color name="AuroraYellow">#EAC278</color>
+    <color name="AuroraGreen">#99B67D</color>
+    <color name="AuroraPurple">#AB81A5</color>
+
+
 </resources>

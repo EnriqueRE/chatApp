@@ -15,12 +15,12 @@ data class MessageFrom(val type: String, val id: String)
 data class MessagePayload(
         val type: String,
         val text: String? = "",
-        val postback: Postback?,
-        val globalActions: List<Action>?,
-        val actions: List<Action>?,
-        val attachment: Attachment?,
-        val location: Location?,
-        val cards: List<Card>?
+        val postback: Postback? = null,
+        val globalActions: List<Action>? = null,
+        val actions: List<Action>? = null,
+        val attachment: Attachment? = null,
+        val location: Location? = null,
+        val cards: List<Card>? = null
 
 )
 
