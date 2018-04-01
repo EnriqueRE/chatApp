@@ -4,8 +4,10 @@ import com.squareup.moshi.FromJson
 import com.squareup.moshi.Json
 import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
-data class MessageSent(val from: MessageFrom?, val messageTo: MessageTo?, val messagePayload: MessagePayload)
-data class Message(val from: MessageFrom?, val messageTo: MessageTo?, @Json(name = "body") val messageBody: MessageBody)
+
+open class BaseMessage(val appType: String)
+data class MessageSent(val from: MessageFrom?, val messageTo: MessageTo?, val messagePayload: MessagePayload):BaseMessage("user")
+data class Message(val from: MessageFrom?, val messageTo: MessageTo?, @Json(name = "body") val messageBody: MessageBody):BaseMessage("bot")
 
 data class MessageBody(val messagePayload: MessagePayload)
 

@@ -1,8 +1,7 @@
-package chat.at.gse.com.chatapp
+package chat.at.gse.com.chatapp.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Message
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -10,11 +9,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import chat.at.gse.com.chatapp.R
+import chat.at.gse.com.chatapp.ViewAdapters.ChatMessageRecyclerViewAdapter
 
 import chat.at.gse.com.chatapp.dummy.DummyContent.DummyItem
-import chat.at.gse.com.chatapp.model.MessageFrom
-import chat.at.gse.com.chatapp.model.MessagePayload
-import chat.at.gse.com.chatapp.model.MessageSent
+import chat.at.gse.com.chatapp.model.*
 
 /**
  * A fragment representing a list of Items.
@@ -25,6 +24,8 @@ class ChatMessageFragment : Fragment() {
 
     // TODO: Customize parameters
     private var columnCount = 1
+
+    private var adapter:ChatMessageRecyclerViewAdapter? = null
 
     private var listener: OnListFragmentInteractionListener? = null
 
@@ -40,20 +41,25 @@ class ChatMessageFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_chatmessage_list, container, false)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                val messages:MutableList<MessageSent> = ArrayList<MessageSent>()
-                messages.add(MessageSent(MessageFrom("user","me"),
-                        null, MessagePayload("text", "hello world")))
+        val messages = ArrayList<BaseMessage>()
 
-                adapter = ChatMessageRecyclerViewAdapter(messages)
-            }
+        val sent:MessageSent = MessageSent(MessageFrom("user","me"),
+                null, MessagePayload("text", "hello world"))
+
+        val receivedText = Message(MessageFrom("bot","123"),
+                null,
+                MessageBody(MessagePayload("text", "Hello There"))
+        )
+        messages.add(receivedText)
+        messages.add(sent)
+
+        adapter = ChatMessageRecyclerViewAdapter(messages)
+
+        if (view is RecyclerView){
+            val context = view.context
+            view.adapter = adapter
         }
+
         return view
     }
 

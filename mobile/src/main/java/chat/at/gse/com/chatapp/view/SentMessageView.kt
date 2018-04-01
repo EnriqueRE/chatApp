@@ -12,7 +12,7 @@ import chat.at.gse.com.chatapp.model.MessageSent
 
 class SentMessageView(view: View): RecyclerView.ViewHolder(view) {
 
-    private val txtMessageBody: TextView = view.findViewById<TextView>(R.id.text_message_body)
+    private val txtMessageBody: TextView = view.findViewById(R.id.text_message_body)
 
     fun bind(message:MessageSent){
         txtMessageBody.text = "hello world"

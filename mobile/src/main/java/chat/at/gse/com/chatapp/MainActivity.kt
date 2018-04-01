@@ -4,9 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import chat.at.gse.com.chatapp.dummy.DummyContent
-import chat.at.gse.com.chatapp.model.Message
-import com.squareup.moshi.KotlinJsonAdapterFactory
-import com.squareup.moshi.Moshi
+import chat.at.gse.com.chatapp.fragments.ChatMessageFragment
 
 class MainActivity : AppCompatActivity(), ChatMessageFragment.OnListFragmentInteractionListener {
     override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
