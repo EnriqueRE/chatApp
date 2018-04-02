@@ -59,6 +59,7 @@ class ChatMessageFragment : Fragment() {
         val choicesMessage = messageAdapter.fromJson(choicesJson)
         val imageMessage = messageAdapter.fromJson(imageJson)
         val audioMessage = messageAdapter.fromJson(audioJson)
+        val videoMessage = messageAdapter.fromJson(videoJson)
 
         messages.add(receivedText)
         if (choicesMessage != null) {
@@ -72,6 +73,9 @@ class ChatMessageFragment : Fragment() {
         if (audioMessage != null) {
             messages.add(audioMessage)
         }
+
+        if (videoMessage !=null)
+            messages.add(videoMessage)
         messages.add(sent)
 
 
@@ -204,6 +208,22 @@ class ChatMessageFragment : Fragment() {
             "attachment": {
                 "type": "audio",
                 "url": "https://raw.githubusercontent.com/fbsamples/messenger-platform-samples/master/node/public/assets/sample.mp3"
+            },
+            "type": "attachment"
+        },
+        "userId": "1"
+    }
+}"""
+        val videoJson = """{
+    "from": {
+        "type": "bot",
+        "id": "6EF3D456-DEB9-46BB-A58D-3FDDF965A0C2"
+    },
+    "body": {
+        "messagePayload": {
+            "attachment": {
+                "type": "video",
+                "url": "https://raw.githubusercontent.com/fbsamples/messenger-platform-samples/master/node/public/assets/allofus480.mov"
             },
             "type": "attachment"
         },

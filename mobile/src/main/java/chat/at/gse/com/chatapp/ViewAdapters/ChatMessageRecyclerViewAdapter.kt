@@ -32,6 +32,7 @@ class ChatMessageRecyclerViewAdapter(
         val VIEW_TYPE_BOT_CARDS = 3
         val VIEW_TYPE_BOT_IMAGE = 4
         val VIEW_TYPE_BOT_AUDIO = 5
+        val VIEW_TYPE_BOT_VIDEO = 6
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -59,6 +60,7 @@ class ChatMessageRecyclerViewAdapter(
                                 "audio" -> {
                                     VIEW_TYPE_BOT_AUDIO
                                 }
+                                "video" -> VIEW_TYPE_BOT_VIDEO
                                 else -> {
                                     Log.d("ADAPTER", "NOTHING")
                                 }
@@ -87,6 +89,7 @@ class ChatMessageRecyclerViewAdapter(
             VIEW_TYPE_BOT_CHOICES -> (holder as MultiChoiceMessageView).bind(item as Message)
             VIEW_TYPE_BOT_IMAGE -> (holder as ImageMessageView).bind(item as Message)
             VIEW_TYPE_BOT_AUDIO -> (holder as AudioMessageView).bind(item as Message)
+            VIEW_TYPE_BOT_VIDEO -> (holder as VideoMessageView).bind(item as Message)
         }
 
 
@@ -131,6 +134,11 @@ class ChatMessageRecyclerViewAdapter(
                 view = LayoutInflater.from(parent.context)
                         .inflate(R.layout.view_audio_received_message, parent, false)
                 return AudioMessageView(view)
+            }
+            VIEW_TYPE_BOT_VIDEO ->{
+                view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.view_video_received_message, parent,false)
+                return VideoMessageView(view)
             }
             else -> return null
         }
