@@ -26,13 +26,14 @@ class ChatMessageRecyclerViewAdapter(
 
     companion object {
 
-        val VIEW_TYPE_MESSAGE_SENT = 0
-        val VIEW_TYPE_MESSAGE_RECEIVED = 1
-        val VIEW_TYPE_BOT_CHOICES = 2
-        val VIEW_TYPE_BOT_CARDS = 3
-        val VIEW_TYPE_BOT_IMAGE = 4
-        val VIEW_TYPE_BOT_AUDIO = 5
-        val VIEW_TYPE_BOT_VIDEO = 6
+        const val VIEW_TYPE_MESSAGE_SENT = 0
+        const val VIEW_TYPE_MESSAGE_RECEIVED = 1
+        const val VIEW_TYPE_BOT_CHOICES = 2
+        const val VIEW_TYPE_BOT_CARDS = 3
+        const val VIEW_TYPE_BOT_IMAGE = 4
+        const val VIEW_TYPE_BOT_AUDIO = 5
+        const val VIEW_TYPE_BOT_VIDEO = 6
+        const val VIEW_TYPE_BOT_FILE = 7
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -61,9 +62,11 @@ class ChatMessageRecyclerViewAdapter(
                                     VIEW_TYPE_BOT_AUDIO
                                 }
                                 "video" -> VIEW_TYPE_BOT_VIDEO
+                                "file" -> VIEW_TYPE_BOT_FILE
                                 else -> {
                                     Log.d("ADAPTER", "NOTHING")
                                 }
+
                             }
                         else -> VIEW_TYPE_MESSAGE_RECEIVED
                     }
@@ -90,6 +93,7 @@ class ChatMessageRecyclerViewAdapter(
             VIEW_TYPE_BOT_IMAGE -> (holder as ImageMessageView).bind(item as Message)
             VIEW_TYPE_BOT_AUDIO -> (holder as AudioMessageView).bind(item as Message)
             VIEW_TYPE_BOT_VIDEO -> (holder as VideoMessageView).bind(item as Message)
+            VIEW_TYPE_BOT_FILE -> (holder as FileMessageView).bind(item as Message)
         }
 
 
@@ -139,6 +143,11 @@ class ChatMessageRecyclerViewAdapter(
                 view = LayoutInflater.from(parent.context)
                         .inflate(R.layout.view_video_received_message, parent,false)
                 return VideoMessageView(view)
+            }
+            VIEW_TYPE_BOT_FILE->{
+                view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.view_file_received_message, parent,false)
+                return FileMessageView(view)
             }
             else -> return null
         }

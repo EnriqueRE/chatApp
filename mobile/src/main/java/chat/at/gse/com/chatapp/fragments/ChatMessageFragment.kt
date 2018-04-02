@@ -60,6 +60,7 @@ class ChatMessageFragment : Fragment() {
         val imageMessage = messageAdapter.fromJson(imageJson)
         val audioMessage = messageAdapter.fromJson(audioJson)
         val videoMessage = messageAdapter.fromJson(videoJson)
+        val fileMessage = messageAdapter.fromJson(fileJson)
 
         messages.add(receivedText)
         if (choicesMessage != null) {
@@ -76,6 +77,9 @@ class ChatMessageFragment : Fragment() {
 
         if (videoMessage !=null)
             messages.add(videoMessage)
+
+        if (fileMessage !=null)
+            messages.add(fileMessage)
         messages.add(sent)
 
 
@@ -224,6 +228,22 @@ class ChatMessageFragment : Fragment() {
             "attachment": {
                 "type": "video",
                 "url": "https://raw.githubusercontent.com/fbsamples/messenger-platform-samples/master/node/public/assets/allofus480.mov"
+            },
+            "type": "attachment"
+        },
+        "userId": "1"
+    }
+}"""
+        val fileJson = """{
+    "from": {
+        "type": "bot",
+        "id": "6EF3D456-DEB9-46BB-A58D-3FDDF965A0C2"
+    },
+    "body": {
+        "messagePayload": {
+            "attachment": {
+                "type": "file",
+                "url": "http://www.oracle.com/technetwork/developer-tools/adf/adf-11-overview-1-129504.pdf"
             },
             "type": "attachment"
         },
