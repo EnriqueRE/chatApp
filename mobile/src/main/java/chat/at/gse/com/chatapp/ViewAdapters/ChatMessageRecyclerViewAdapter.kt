@@ -1,6 +1,7 @@
 package chat.at.gse.com.chatapp.ViewAdapters
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import chat.at.gse.com.chatapp.dummy.DummyContent.DummyItem
 import chat.at.gse.com.chatapp.model.BaseMessage
 import chat.at.gse.com.chatapp.model.Message
 import chat.at.gse.com.chatapp.model.MessageSent
+import chat.at.gse.com.chatapp.view.MultiChoiceMessageView
 import chat.at.gse.com.chatapp.view.ReceivedTextView
 import chat.at.gse.com.chatapp.view.SentMessageView
 
@@ -33,11 +35,29 @@ class ChatMessageRecyclerViewAdapter(
 
     override fun getItemViewType(position: Int): Int {
 
-        val message = mValues[position] as BaseMessage
+        var message = mValues[position] as BaseMessage
 
         when (message.appType) {
             "user" -> return VIEW_TYPE_MESSAGE_SENT
-            "bot" -> return VIEW_TYPE_MESSAGE_RECEIVED
+            "bot" -> {
+
+                val payload = (message as Message).messageBody.messagePayload
+
+                return if (payload.type.equals("text") && payload.actions != null){
+                    Log.d("ADAPTER", payload.actions.toString())
+                    VIEW_TYPE_BOT_CHOICES
+                }else{
+                    VIEW_TYPE_MESSAGE_RECEIVED
+                }
+
+
+
+
+
+
+
+            }
+
 
         }
 
@@ -48,8 +68,9 @@ class ChatMessageRecyclerViewAdapter(
         val item = mValues[position]
 
         when (holder?.itemViewType) {
-            VIEW_TYPE_MESSAGE_SENT -> (holder as SentMessageView).bind(item as MessageSent)
+            VIEW_TYPE_MESSAGE_SENT -> {(holder as SentMessageView).bind(item as MessageSent)}
             VIEW_TYPE_MESSAGE_RECEIVED -> (holder as ReceivedTextView).bind(item as Message)
+            VIEW_TYPE_BOT_CHOICES -> (holder as MultiChoiceMessageView).bind(item as Message)
         }
 
 
@@ -79,6 +100,11 @@ class ChatMessageRecyclerViewAdapter(
                 view = LayoutInflater.from(parent.context)
                         .inflate(R.layout.view_text_received_message, parent, false)
                 return ReceivedTextView(view)
+            }
+            VIEW_TYPE_BOT_CHOICES ->{
+                view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.view_choices_received_message, parent, false)
+                return MultiChoiceMessageView(view)
             }
             else -> return null
         }

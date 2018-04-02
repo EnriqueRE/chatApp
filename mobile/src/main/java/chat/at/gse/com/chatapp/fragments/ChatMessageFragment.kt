@@ -14,6 +14,8 @@ import chat.at.gse.com.chatapp.ViewAdapters.ChatMessageRecyclerViewAdapter
 
 import chat.at.gse.com.chatapp.dummy.DummyContent.DummyItem
 import chat.at.gse.com.chatapp.model.*
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
 
 /**
  * A fragment representing a list of Items.
@@ -50,8 +52,18 @@ class ChatMessageFragment : Fragment() {
                 null,
                 MessageBody(MessagePayload("text", "Hello There"))
         )
+
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        val messageAdapter = moshi.adapter(Message::class.java)
+
+        val choicesMessage = messageAdapter.fromJson(choicesJson)
+
         messages.add(receivedText)
+        if (choicesMessage != null) {
+            messages.add(choicesMessage)
+        }
         messages.add(sent)
+
 
         adapter = ChatMessageRecyclerViewAdapter(messages)
 
@@ -76,6 +88,7 @@ class ChatMessageFragment : Fragment() {
         super.onDetach()
         listener = null
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -106,5 +119,54 @@ class ChatMessageFragment : Fragment() {
                         putInt(ARG_COLUMN_COUNT, columnCount)
                     }
                 }
+
+
+        val choicesJson = """{
+    "from": {
+        "type": "bot",
+        "id": "6EF3D456-DEB9-46BB-A58D-3FDDF965A0C2"
+    },
+    "body": {
+        "messagePayload": {
+            "text": "Here is a list of the UI features.\nTap on each feature to see a demo.",
+            "type": "text",
+            "globalActions": [{
+                "postback": {
+                    "variables": {},
+                    "action": "location",
+                    "state": "FeatureMenu"
+                },
+                "label": "Location",
+                "type": "postback"
+            }],
+            "actions": [{
+                "postback": {
+                    "variables": {},
+                    "action": "horiCards",
+                    "state": "FeatureMenu"
+                },
+                "label": "Horizontal Cards",
+                "type": "postback"
+            }, {
+                "postback": {
+                    "variables": {},
+                    "action": "vertCards",
+                    "state": "FeatureMenu"
+                },
+                "label": "Vertical Cards",
+                "type": "postback"
+            }, {
+                "postback": {
+                    "variables": {},
+                    "action": "attachment",
+                    "state": "FeatureMenu"
+                },
+                "label": "Attachments",
+                "type": "postback"
+            }]
+        },
+        "userId": "1"
+    }
+} """
     }
 }
