@@ -57,10 +57,15 @@ class ChatMessageFragment : Fragment() {
         val messageAdapter = moshi.adapter(Message::class.java)
 
         val choicesMessage = messageAdapter.fromJson(choicesJson)
+        val imageMessage = messageAdapter.fromJson(imageJson)
 
         messages.add(receivedText)
         if (choicesMessage != null) {
             messages.add(choicesMessage)
+        }
+
+        if (imageMessage != null) {
+            messages.add(imageMessage)
         }
         messages.add(sent)
 
@@ -168,5 +173,21 @@ class ChatMessageFragment : Fragment() {
         "userId": "1"
     }
 } """
+        val imageJson = """{
+            "from": {
+                "type": "bot",
+                "id": "6EF3D456-DEB9-46BB-A58D-3FDDF965A0C2"
+            },
+            "body": {
+                "messagePayload": {
+                    "attachment": {
+                        "type": "image",
+                        "url": "https://cloud.oracle.com/res/images/header/oracle-cloud-logo.png"
+                    },
+                    "type": "attachment"
+                },
+                "userId": "1"
+            }
+        }"""
     }
 }
