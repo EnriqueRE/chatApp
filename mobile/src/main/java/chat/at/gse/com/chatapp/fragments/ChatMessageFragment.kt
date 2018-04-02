@@ -27,7 +27,7 @@ class ChatMessageFragment : Fragment() {
     // TODO: Customize parameters
     private var columnCount = 1
 
-    private var adapter:ChatMessageRecyclerViewAdapter? = null
+    private var adapter: ChatMessageRecyclerViewAdapter? = null
 
     private var listener: OnListFragmentInteractionListener? = null
 
@@ -45,10 +45,10 @@ class ChatMessageFragment : Fragment() {
 
         val messages = ArrayList<BaseMessage>()
 
-        val sent:MessageSent = MessageSent(MessageFrom("user","me"),
+        val sent: MessageSent = MessageSent(MessageFrom("user", "me"),
                 null, MessagePayload("text", "hello world"))
 
-        val receivedText = Message(MessageFrom("bot","123"),
+        val receivedText = Message(MessageFrom("bot", "123"),
                 null,
                 MessageBody(MessagePayload("text", "Hello There"))
         )
@@ -58,6 +58,7 @@ class ChatMessageFragment : Fragment() {
 
         val choicesMessage = messageAdapter.fromJson(choicesJson)
         val imageMessage = messageAdapter.fromJson(imageJson)
+        val audioMessage = messageAdapter.fromJson(audioJson)
 
         messages.add(receivedText)
         if (choicesMessage != null) {
@@ -67,12 +68,16 @@ class ChatMessageFragment : Fragment() {
         if (imageMessage != null) {
             messages.add(imageMessage)
         }
+
+        if (audioMessage != null) {
+            messages.add(audioMessage)
+        }
         messages.add(sent)
 
 
         adapter = ChatMessageRecyclerViewAdapter(messages)
 
-        if (view is RecyclerView){
+        if (view is RecyclerView) {
             val context = view.context
             view.adapter = adapter
         }
@@ -189,5 +194,21 @@ class ChatMessageFragment : Fragment() {
                 "userId": "1"
             }
         }"""
+        val audioJson = """{
+    "from": {
+        "type": "bot",
+        "id": "6EF3D456-DEB9-46BB-A58D-3FDDF965A0C2"
+    },
+    "body": {
+        "messagePayload": {
+            "attachment": {
+                "type": "audio",
+                "url": "https://raw.githubusercontent.com/fbsamples/messenger-platform-samples/master/node/public/assets/sample.mp3"
+            },
+            "type": "attachment"
+        },
+        "userId": "1"
+    }
+}"""
     }
 }

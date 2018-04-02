@@ -26,7 +26,7 @@ class ImageMessageView(view: View) : RecyclerView.ViewHolder(view) {
         } else {
             txtMessageBody.text = payload.text
         }
-        Log.d("IMAGEVIEW", payload.attachment.toString())
+//        Log.d("IMAGEVIEW", payload.attachment.toString())
         Picasso.get().load(payload.attachment!!.url).into(image)
     }
 

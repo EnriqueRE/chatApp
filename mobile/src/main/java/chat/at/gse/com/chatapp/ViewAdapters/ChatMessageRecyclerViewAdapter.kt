@@ -13,10 +13,7 @@ import chat.at.gse.com.chatapp.dummy.DummyContent.DummyItem
 import chat.at.gse.com.chatapp.model.BaseMessage
 import chat.at.gse.com.chatapp.model.Message
 import chat.at.gse.com.chatapp.model.MessageSent
-import chat.at.gse.com.chatapp.view.ImageMessageView
-import chat.at.gse.com.chatapp.view.MultiChoiceMessageView
-import chat.at.gse.com.chatapp.view.ReceivedTextView
-import chat.at.gse.com.chatapp.view.SentMessageView
+import chat.at.gse.com.chatapp.view.*
 import java.util.*
 
 /**
@@ -34,6 +31,7 @@ class ChatMessageRecyclerViewAdapter(
         val VIEW_TYPE_BOT_CHOICES = 2
         val VIEW_TYPE_BOT_CARDS = 3
         val VIEW_TYPE_BOT_IMAGE = 4
+        val VIEW_TYPE_BOT_AUDIO = 5
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -51,18 +49,20 @@ class ChatMessageRecyclerViewAdapter(
                     VIEW_TYPE_BOT_CHOICES
                 } else {
 
-                    when(payload.type){
+                    when (payload.type) {
                         "attachment" ->
-                                when(payload.attachment!!.type){
-                                    "image" ->{
-                                        Log.d("ADAPTER", message.toString())
-                                        VIEW_TYPE_BOT_IMAGE
-                                    }
-                                    "video" -> Log.d("ADAPTER", "It's a video")
-                                    else -> {
-                                        Log.d("ADAPTER", "NOTHING")
-                                    }
+                            when (payload.attachment!!.type) {
+                                "image" -> {
+
+                                    VIEW_TYPE_BOT_IMAGE
                                 }
+                                "audio" -> {
+                                    VIEW_TYPE_BOT_AUDIO
+                                }
+                                else -> {
+                                    Log.d("ADAPTER", "NOTHING")
+                                }
+                            }
                         else -> VIEW_TYPE_MESSAGE_RECEIVED
                     }
                 }
@@ -86,6 +86,7 @@ class ChatMessageRecyclerViewAdapter(
             VIEW_TYPE_MESSAGE_RECEIVED -> (holder as ReceivedTextView).bind(item as Message)
             VIEW_TYPE_BOT_CHOICES -> (holder as MultiChoiceMessageView).bind(item as Message)
             VIEW_TYPE_BOT_IMAGE -> (holder as ImageMessageView).bind(item as Message)
+            VIEW_TYPE_BOT_AUDIO -> (holder as AudioMessageView).bind(item as Message)
         }
 
 
@@ -121,10 +122,15 @@ class ChatMessageRecyclerViewAdapter(
                         .inflate(R.layout.view_choices_received_message, parent, false)
                 return MultiChoiceMessageView(view)
             }
-            VIEW_TYPE_BOT_IMAGE ->{
+            VIEW_TYPE_BOT_IMAGE -> {
                 view = LayoutInflater.from(parent.context)
                         .inflate(R.layout.view_image_received_message, parent, false)
                 return ImageMessageView(view)
+            }
+            VIEW_TYPE_BOT_AUDIO ->{
+                view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.view_audio_received_message, parent, false)
+                return AudioMessageView(view)
             }
             else -> return null
         }
