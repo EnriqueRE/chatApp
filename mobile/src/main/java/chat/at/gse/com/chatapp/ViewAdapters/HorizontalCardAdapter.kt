@@ -12,6 +12,7 @@ import android.widget.TextView
 import chat.at.gse.com.chatapp.R
 import chat.at.gse.com.chatapp.model.Card
 import com.squareup.picasso.Picasso
+import com.viewpagerindicator.CirclePageIndicator
 
 class HorizontalCardAdapter(private val context: Context, private val cards:List<Card>): PagerAdapter() {
 
@@ -33,6 +34,7 @@ class HorizontalCardAdapter(private val context: Context, private val cards:List
         Picasso.get().load(card.imageUrl).into(image)
 
         collection.addView(layout)
+
 
         return layout
     }
