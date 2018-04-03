@@ -61,26 +61,31 @@ class ChatMessageFragment : Fragment() {
         val audioMessage = messageAdapter.fromJson(audioJson)
         val videoMessage = messageAdapter.fromJson(videoJson)
         val fileMessage = messageAdapter.fromJson(fileJson)
+        val horizontalCardsMessage = messageAdapter.fromJson(horizontalCardsJson)
 
-        messages.add(receivedText)
-        if (choicesMessage != null) {
-            messages.add(choicesMessage)
+//        messages.add(receivedText)
+//        if (choicesMessage != null) {
+//            messages.add(choicesMessage)
+//        }
+//
+//        if (imageMessage != null) {
+//            messages.add(imageMessage)
+//        }
+//
+//        if (audioMessage != null) {
+//            messages.add(audioMessage)
+//        }
+//
+//        if (videoMessage !=null)
+//            messages.add(videoMessage)
+//
+//        if (fileMessage !=null)
+//            messages.add(fileMessage)
+//        messages.add(sent)
+
+        if(horizontalCardsMessage !=null){
+            messages.add(horizontalCardsMessage)
         }
-
-        if (imageMessage != null) {
-            messages.add(imageMessage)
-        }
-
-        if (audioMessage != null) {
-            messages.add(audioMessage)
-        }
-
-        if (videoMessage !=null)
-            messages.add(videoMessage)
-
-        if (fileMessage !=null)
-            messages.add(fileMessage)
-        messages.add(sent)
 
 
         adapter = ChatMessageRecyclerViewAdapter(messages)
@@ -250,5 +255,129 @@ class ChatMessageFragment : Fragment() {
         "userId": "1"
     }
 }"""
+        val horizontalCardsJson = """
+            {
+    "from": {
+        "type": "bot",
+        "id": "6EF3D456-DEB9-46BB-A58D-3FDDF965A0C2"
+    },
+    "body": {
+        "messagePayload": {
+            "layout": "horizontal",
+            "cards": [{
+                "imageUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/2/000/123/20e/30acc07.jpg",
+                "description": "Demo Builder God",
+                "title": "Martin Deh",
+                "actions": [{
+                    "phoneNumber": "16505060096",
+                    "label": "Call Martin",
+                    "type": "call"
+                }, {
+                    "label": "Share",
+                    "type": "share"
+                }],
+                "url": "https://www.linkedin.com/in/martin-deh-4862572"
+            }, {
+                "imageUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/005/074/285/29f51d6.jpg",
+                "description": "Multi-lingual Magician",
+                "title": "Tamer Qumhieh",
+                "actions": [{
+                    "postback": {
+                        "variables": {
+                            "f": "1"
+                        },
+                        "action": "bio",
+                        "state": "HoriCards"
+                    },
+                    "label": "Bio",
+                    "type": "postback"
+                }, {
+                    "phoneNumber": "962799702703",
+                    "label": "Call Tamer",
+                    "type": "call"
+                }, {
+                    "label": "Share",
+                    "type": "share"
+                }],
+                "url": "https://www.linkedin.com/in/tamerqumhieh"
+            }, {
+                "imageUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASGAAAAJDEzNDIxNDEzLWJkNmEtNDJmNi04YmM1LWUzNTM3MWM4MzNjOA.jpg",
+                "description": "Flow Builder Fanatic",
+                "title": "Steven Davelaar",
+                "actions": [{
+                    "postback": {
+                        "variables": {
+                            "f": "2"
+                        },
+                        "action": "bio",
+                        "state": "HoriCards"
+                    },
+                    "label": "Bio",
+                    "type": "postback"
+                }, {
+                    "phoneNumber": "31306699000",
+                    "label": "Call Steven",
+                    "type": "call"
+                }, {
+                    "label": "Share",
+                    "type": "share"
+                }],
+                "url": "https://www.linkedin.com/in/steven-davelaar-97a418"
+            }, {
+                "imageUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/000/053/3ae/2aaf5dd.jpg",
+                "description": "Machine Learning Master",
+                "title": "Lyudmil Pelov",
+                "actions": [{
+                    "postback": {
+                        "variables": {
+                            "f": "3"
+                        },
+                        "action": "bio",
+                        "state": "HoriCards"
+                    },
+                    "label": "Bio",
+                    "type": "postback"
+                }, {
+                    "phoneNumber": "494089091591",
+                    "label": "Call Lyudmil",
+                    "type": "call"
+                }, {
+                    "label": "Share",
+                    "type": "share"
+                }],
+                "url": "https://www.linkedin.com/in/lyudmil-pelov-%C2%A9-26209b9"
+            }, {
+                "imageUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/3/000/047/38b/26fd5e0.jpg",
+                "description": "Docker Devil",
+                "title": "Adao Oliviera Junior",
+                "actions": [{
+                    "phoneNumber": "16507878164",
+                    "label": "Call Adao",
+                    "type": "call"
+                }, {
+                    "label": "Share",
+                    "type": "share"
+                }],
+                "url": "https://www.linkedin.com/in/adaojunior/"
+            }],
+            "type": "card",
+            "globalActions": [{
+                "postback": {
+                    "variables": {},
+                    "action": "menu",
+                    "state": "HoriCards"
+                },
+                "label": "Feature Menu",
+                "type": "postback"
+            }, {
+                "label": "A-Team Chronicles",
+                "type": "url",
+                "url": "http://www.ateam-oracle.com/"
+            }]
+        },
+        "userId": "1"
+    }
+}
+        """.trimIndent()
     }
 }

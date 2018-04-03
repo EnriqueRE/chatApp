@@ -29,7 +29,8 @@ data class MessagePayload(
         val actions: List<Action>? = null,
         val attachment: Attachment? = null,
         val location: Location? = null,
-        val cards: List<Card>? = null
+        val cards: List<Card>? = null,
+        val layout: String? = "horizontal"
 
 )
 

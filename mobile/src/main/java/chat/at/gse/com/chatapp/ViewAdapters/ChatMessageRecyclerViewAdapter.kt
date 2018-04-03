@@ -29,7 +29,7 @@ class ChatMessageRecyclerViewAdapter(
         const val VIEW_TYPE_MESSAGE_SENT = 0
         const val VIEW_TYPE_MESSAGE_RECEIVED = 1
         const val VIEW_TYPE_BOT_CHOICES = 2
-        const val VIEW_TYPE_BOT_CARDS = 3
+        const val VIEW_TYPE_BOT_CARDS_HOR = 3
         const val VIEW_TYPE_BOT_IMAGE = 4
         const val VIEW_TYPE_BOT_AUDIO = 5
         const val VIEW_TYPE_BOT_VIDEO = 6
@@ -51,25 +51,41 @@ class ChatMessageRecyclerViewAdapter(
                     VIEW_TYPE_BOT_CHOICES
                 } else {
 
-                    when (payload.type) {
-                        "attachment" ->
-                            when (payload.attachment!!.type) {
-                                "image" -> {
-
-                                    VIEW_TYPE_BOT_IMAGE
-                                }
-                                "audio" -> {
-                                    VIEW_TYPE_BOT_AUDIO
-                                }
-                                "video" -> VIEW_TYPE_BOT_VIDEO
-                                "file" -> VIEW_TYPE_BOT_FILE
-                                else -> {
-                                    Log.d("ADAPTER", "NOTHING")
-                                }
-
+                    if (payload.cards != null) {
+                        when (payload.layout) {
+                            "horizontal" -> {
+                                VIEW_TYPE_BOT_CARDS_HOR
                             }
-                        else -> VIEW_TYPE_MESSAGE_RECEIVED
+                            "vertical" -> {
+                                VIEW_TYPE_BOT_CARDS_HOR
+                            }
+                            else -> {
+                                VIEW_TYPE_MESSAGE_RECEIVED
+                            }
+                        }
+                    } else {
+                        when (payload.type) {
+                            "attachment" ->
+                                when (payload.attachment!!.type) {
+                                    "image" -> {
+
+                                        VIEW_TYPE_BOT_IMAGE
+                                    }
+                                    "audio" -> {
+                                        VIEW_TYPE_BOT_AUDIO
+                                    }
+                                    "video" -> VIEW_TYPE_BOT_VIDEO
+                                    "file" -> VIEW_TYPE_BOT_FILE
+                                    else -> {
+                                        Log.d("ADAPTER", "NOTHING")
+                                    }
+
+                                }
+                            else -> VIEW_TYPE_MESSAGE_RECEIVED
+                        }
                     }
+
+
                 }
 
 
@@ -94,6 +110,7 @@ class ChatMessageRecyclerViewAdapter(
             VIEW_TYPE_BOT_AUDIO -> (holder as AudioMessageView).bind(item as Message)
             VIEW_TYPE_BOT_VIDEO -> (holder as VideoMessageView).bind(item as Message)
             VIEW_TYPE_BOT_FILE -> (holder as FileMessageView).bind(item as Message)
+            VIEW_TYPE_BOT_CARDS_HOR -> (holder as HorizontalCardsView).bind(item as Message)
         }
 
 
@@ -134,20 +151,25 @@ class ChatMessageRecyclerViewAdapter(
                         .inflate(R.layout.view_image_received_message, parent, false)
                 return ImageMessageView(view)
             }
-            VIEW_TYPE_BOT_AUDIO ->{
+            VIEW_TYPE_BOT_AUDIO -> {
                 view = LayoutInflater.from(parent.context)
                         .inflate(R.layout.view_audio_received_message, parent, false)
                 return AudioMessageView(view)
             }
-            VIEW_TYPE_BOT_VIDEO ->{
+            VIEW_TYPE_BOT_VIDEO -> {
                 view = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.view_video_received_message, parent,false)
+                        .inflate(R.layout.view_video_received_message, parent, false)
                 return VideoMessageView(view)
             }
-            VIEW_TYPE_BOT_FILE->{
+            VIEW_TYPE_BOT_FILE -> {
                 view = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.view_file_received_message, parent,false)
+                        .inflate(R.layout.view_file_received_message, parent, false)
                 return FileMessageView(view)
+            }
+            VIEW_TYPE_BOT_CARDS_HOR ->{
+                view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.view_cards_horizontal_received_message, parent, false)
+                return HorizontalCardsView(view)
             }
             else -> return null
         }
