@@ -1,3 +1,49 @@
 <resources>
-    <string name="app_name">ChatApp</string>
+    <string name="app_name">Chatbots 2.1</string>
+    <string name="no_data_available">No data available</string>
+    <string name="ngrok_default_tenant">5c82a414-e2d0-45fd-b6a2-8ca3b9c09160</string>
+    <!--<string name="ngrok_default_url">xxxx.ngrok.io</string>-->
+    <string name="ngrok_default_url">129.150.87.234</string>
+    <string name="introText">This is the latest version of our client app for testing chatbots. For more information on how to use this or chatbots in general go to <a href="https://www.google.com">our Demo Store Page</a></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">Ngrok Settings</string>
+    <string name="pref_header_general_summary">Ngrok urls for port 8888 and 8080</string>
+
+
+    <string name="pref_ngrok_web_default">f436fdb0.ngrok.io</string>
+    <string name="pref_ngrok_web_title">Ngrok 8080 URL</string>
+    <string name="pref_ngrok_web_summary">Ngrok url for your environment\'s port 8080</string>
+
+    <string name="pref_ngrok_socket_default">f436fdb0.ngrok.io</string>
+    <string name="pref_ngrok_socket_title">Ngrok 8888 URL</string>
+    <string name="pref_ngrok_socket_summary">Ngrok url for your environment\'s port 8888</string>
+
+
+    <string name="prefs_ngrok_websocket">Ngrok Websocket URL</string>
+
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+    <string name="title_activity_channels">Channels</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_first_launch">FirstLaunchActivity</string>
 </resources>

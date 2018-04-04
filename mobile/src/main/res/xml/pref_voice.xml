@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="voice"
+        android:summaryOff="The app will not read the messages you receive from your bots"
+        android:summaryOn="The app will read the messages you receive from your bots"
+        android:switchTextOn="On"
+        android:switchTextOff="Off"
+        android:title="Enable Voice Output"
+        />
+
+
+</PreferenceScreen>

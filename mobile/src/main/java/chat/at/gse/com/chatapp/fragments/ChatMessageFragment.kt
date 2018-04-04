@@ -63,25 +63,25 @@ class ChatMessageFragment : Fragment() {
         val fileMessage = messageAdapter.fromJson(fileJson)
         val horizontalCardsMessage = messageAdapter.fromJson(horizontalCardsJson)
 
-//        messages.add(receivedText)
-//        if (choicesMessage != null) {
-//            messages.add(choicesMessage)
-//        }
-//
-//        if (imageMessage != null) {
-//            messages.add(imageMessage)
-//        }
-//
-//        if (audioMessage != null) {
-//            messages.add(audioMessage)
-//        }
-//
-//        if (videoMessage !=null)
-//            messages.add(videoMessage)
-//
-//        if (fileMessage !=null)
-//            messages.add(fileMessage)
-//        messages.add(sent)
+        messages.add(receivedText)
+        if (choicesMessage != null) {
+            messages.add(choicesMessage)
+        }
+
+        if (imageMessage != null) {
+            messages.add(imageMessage)
+        }
+
+        if (audioMessage != null) {
+            messages.add(audioMessage)
+        }
+
+        if (videoMessage !=null)
+            messages.add(videoMessage)
+
+        if (fileMessage !=null)
+            messages.add(fileMessage)
+        messages.add(sent)
 
         if(horizontalCardsMessage !=null){
             messages.add(horizontalCardsMessage)

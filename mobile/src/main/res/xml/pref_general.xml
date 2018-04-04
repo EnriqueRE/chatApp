@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ngrok_web_default"
+        android:inputType="text"
+        android:key="ngrok_web"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/pref_ngrok_web_summary"
+        android:title="@string/pref_ngrok_web_title" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_ngrok_socket_default"
+        android:inputType="text"
+        android:key="ngrok_socket"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/pref_ngrok_socket_summary"
+        android:title="@string/pref_ngrok_socket_title" />
+
+
+</PreferenceScreen>

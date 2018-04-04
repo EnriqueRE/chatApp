@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="conversationModels">
+        <item>Simple Model (1.0)</item>
+        <item>Conversation Model (1.1)</item>
+    </string-array>
+
+    <string-array name="conversationModelsValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="environmentVersion">
+        <item>18.2.3</item>
+        <item>17.4.5 (legacy)</item>
+    </string-array>
+    <string-array name="environmentVersionValues">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+</resources>
